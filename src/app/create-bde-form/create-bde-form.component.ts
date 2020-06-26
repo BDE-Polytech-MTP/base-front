@@ -1,0 +1,60 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateSpecialtyModalComponent } from '../create-specialty-modal/create-specialty-modal.component';
+import { BdeService } from '../services/bde.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
+@Component({
+  selector: 'app-create-bde-form',
+  templateUrl: './create-bde-form.component.html',
+  styleUrls: ['./create-bde-form.component.css']
+})
+export class CreateBdeFormComponent implements OnInit {
+
+  error?: string;
+  success?: string;
+  sending = false;
+  bdeName = '';
+  specialties: string[] = [];
+
+  constructor(public dialog: MatDialog, public bdeService: BdeService) { }
+
+  ngOnInit(): void {
+  }
+
+  openSpecialtyDialog() {
+    const dialogRef = this.dialog.open(CreateSpecialtyModalComponent, {
+      data: { exclude: this.specialties, specialty: '' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.specialties.push(result);
+      }
+    });
+  }
+
+  deleteSpecialty(specialty: string) {
+    this.specialties = this.specialties.filter((name) => name !== specialty);
+  }
+
+  sendCreationRequest() {
+    this.sending = true;
+    this.error = this.success = undefined;
+    this.bdeService.createBDE(this.bdeName, this.specialties).subscribe(
+      () => {
+        this.success = 'BDE créé !';
+        this.sending = false;
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status === 400) { // Bad request
+          this.error = 'Un BDE avec ce nom existe déjà.';
+        } else {
+          this.error = 'Une erreur est survenue sur le serveur. Contactez un adminstrateur ou ré-essayez plus tard.';
+        }
+        this.sending = false;
+      },
+    );
+  }
+
+}

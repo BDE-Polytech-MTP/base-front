@@ -1,0 +1,12 @@
+<div class="navbar-container">
+    <nav class="navbar">
+        <a routerLink="/">
+            <img src="assets/icons/icon-512x512.png" class="icon">
+        </a>
+        <div class="flex-space"></div>
+        <a mat-button routerLink="/login" *ngIf="isDisconnected()">Se connecter</a>
+        <button mat-button *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</button>
+        <button mat-button *ngIf="isConnecting()" disabled>Connexion ...</button>
+    </nav>
+    <ng-content></ng-content>
+</div>

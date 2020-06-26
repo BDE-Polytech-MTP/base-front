@@ -1,0 +1,23 @@
+<div class="navbar-container">
+    <nav class="navbar-header">
+        <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+        <div class="flex-space"></div>
+        <a routerLink="/" class="icon-link">
+            <img class="icon" src="assets/icons/icon-152x152.png">
+        </a>
+    </nav>
+    <mat-drawer-container class="mobile-navbar" hasBackdrop="true">
+        <mat-drawer #sidenav mode="hover">
+            <mat-nav-list>
+                <mat-list-item>
+                    <a routerLink="/login" *ngIf="isDisconnected()">Se connecter</a>
+                    <a *ngIf="isConnecting()">Connexion ...</a>
+                    <a *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</a>
+                </mat-list-item>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <ng-content></ng-content>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

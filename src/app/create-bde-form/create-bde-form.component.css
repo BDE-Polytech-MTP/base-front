@@ -1,0 +1,19 @@
+.create-bde-form mat-form-field {
+    width: 100%;
+}
+
+.create-bde-form .create-bde-fields-list > mat-card-content > mat-list-item:first-child {
+    margin-top: 1.5em;
+}
+
+.create-bde-form h2.mat-subheader {
+    padding-left: 0;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}

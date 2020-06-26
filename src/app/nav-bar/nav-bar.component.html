@@ -1,0 +1,11 @@
+<app-mobile-nav-bar *ngIf="mobileQuery.matches">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</app-mobile-nav-bar>
+
+<app-desktop-nav-bar *ngIf="!mobileQuery.matches">
+    <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+</app-desktop-nav-bar>
+
+<ng-template #contentTemplate>
+    <ng-content></ng-content>
+</ng-template>
