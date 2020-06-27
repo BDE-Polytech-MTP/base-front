@@ -19,9 +19,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -52,10 +52,10 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    DragDropModule,
     MatMenuModule,
     MatDialogModule,
     MatSelectModule,
-    MatChipsModule,
     MatSidenavModule,
     MatIconModule,
     MatCardModule,

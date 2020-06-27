@@ -1,6 +1,6 @@
 <mat-card class="create-bde-form">
     <form>
-        <mat-list class="create-bde-fields-list">
+        <mat-list class="create-bde-fields-list" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropListLockAxis="y">
             <mat-list-item>
                 <mat-card-title>Création d'un BDE</mat-card-title>
             </mat-list-item>
@@ -19,14 +19,18 @@
                 </mat-list-item>
 
                 <mat-list-item>
-                    <mat-chip-list>
-                        <mat-chip *ngFor="let spe of specialties" (click)="deleteSpecialty(spe)">
-                            {{spe}}
-                        </mat-chip>
-                        <mat-chip (click)="openSpecialtyDialog()">
-                            <mat-icon>add</mat-icon>
-                        </mat-chip>
-                    </mat-chip-list>
+                    <button mat-stroked-button (click)="openSpecialtyDialog()">Ajouter une spécialité</button>
+                </mat-list-item>
+                
+                <mat-list-item cdkDrag *ngFor="let spe of specialties">
+                    <div class="specialty-list-item">
+                        <div cdkDragHandle>
+                            {{spe.name}} ({{spe.minYear}}A à {{spe.maxYear}}A)
+                        </div>
+                        <button mat-mini-fab color="warn" (click)="deleteSpecialty(spe.name)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
                 </mat-list-item>
 
                 <mat-list-item *ngIf="error || success">

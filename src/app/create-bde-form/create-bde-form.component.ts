@@ -3,11 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateSpecialtyModalComponent } from '../create-specialty-modal/create-specialty-modal.component';
 import { BdeService } from '../services/bde.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-create-bde-form',
   templateUrl: './create-bde-form.component.html',
-  styleUrls: ['./create-bde-form.component.css']
+  styleUrls: ['./create-bde-form.component.scss']
 })
 export class CreateBdeFormComponent implements OnInit {
 
@@ -15,7 +16,7 @@ export class CreateBdeFormComponent implements OnInit {
   success?: string;
   sending = false;
   bdeName = '';
-  specialties: string[] = [];
+  specialties: { name: string, minYear: number, maxYear: number }[] = [];
 
   constructor(public dialog: MatDialog, public bdeService: BdeService) { }
 
@@ -24,24 +25,28 @@ export class CreateBdeFormComponent implements OnInit {
 
   openSpecialtyDialog() {
     const dialogRef = this.dialog.open(CreateSpecialtyModalComponent, {
-      data: { exclude: this.specialties, specialty: '' }
+      data: { exclude: this.specialties.map(spe => spe.name) }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.specialties.push(result);
+        this.specialties.push({
+          name: result.name.trim().toUpperCase(),
+          minYear: result.minYear,
+          maxYear: result.maxYear,
+        });
       }
     });
   }
 
   deleteSpecialty(specialty: string) {
-    this.specialties = this.specialties.filter((name) => name !== specialty);
+    this.specialties = this.specialties.filter((spe) => spe.name !== specialty);
   }
 
   sendCreationRequest() {
     this.sending = true;
     this.error = this.success = undefined;
-    this.bdeService.createBDE(this.bdeName, this.specialties).subscribe(
+    this.bdeService.createBDE(this.bdeName, this.specialties.map(spe => spe.name)).subscribe(
       () => {
         this.success = 'BDE créé !';
         this.sending = false;
@@ -55,6 +60,10 @@ export class CreateBdeFormComponent implements OnInit {
         this.sending = false;
       },
     );
+  }
+
+  drop(event: CdkDragDrop<string[]>): void {
+    moveItemInArray(this.specialties, event.previousIndex, event.currentIndex);
   }
 
 }

@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 const passwordsMatch: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.root.get('password');
 
-  return password && control && password.value !== control.value ? { passMatch: false } : null;
+  return password && control.value && password.value !== control.value ? { passMatch: false } : null;
 };
 
 @Component({

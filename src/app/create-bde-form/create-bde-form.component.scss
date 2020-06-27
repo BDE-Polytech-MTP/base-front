@@ -1,0 +1,45 @@
+.create-bde-form mat-form-field {
+    width: 100%;
+}
+
+.create-bde-form .create-bde-fields-list > mat-card-content > mat-list-item:first-child {
+    margin-top: 1.5em;
+}
+
+.create-bde-form h2.mat-subheader {
+    padding-left: 0;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.create-bde-fields-list.cdk-drop-list-dragging mat-list-item[cdkDrag]:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.specialty-list-item {
+    cursor: move;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #ccc;
+
+    & div {
+        flex-grow: 1;
+    }
+
+}
