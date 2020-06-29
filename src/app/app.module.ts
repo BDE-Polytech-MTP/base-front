@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
@@ -51,6 +52,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     DragDropModule,
     MatMenuModule,
+    MatListModule,
     MatDialogModule,
     MatSelectModule,
     MatSidenavModule,
