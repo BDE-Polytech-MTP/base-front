@@ -10,3 +10,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     top: 2em;
     height: 100%;
 }
+
+.app-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-form > button {
+    margin-bottom: 1.34375em;
+}
