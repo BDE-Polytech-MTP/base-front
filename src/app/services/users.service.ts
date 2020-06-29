@@ -27,12 +27,13 @@ export class UsersService {
     return this.http.get<UnregisteredUser>(`${GET_UNREGISTERED_USER_ENDPOINT}/${uuid}`);
   }
 
-  finishRegistration(uuid: string, firstname: string, lastname: string, specialty: string, password: string) {
+  finishRegistration(uuid: string, firstname: string, lastname: string, specialty: string, year: number, password: string) {
     return this.http.post(CONFIRM_ACCOUNT_ENDPOINT, {
       uuid,
       firstname,
       lastname,
       specialty,
+      year,
       password,
     });
   }

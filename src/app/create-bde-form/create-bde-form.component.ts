@@ -46,7 +46,7 @@ export class CreateBdeFormComponent implements OnInit {
   sendCreationRequest() {
     this.sending = true;
     this.error = this.success = undefined;
-    this.bdeService.createBDE(this.bdeName, this.specialties.map(spe => spe.name)).subscribe(
+    this.bdeService.createBDE(this.bdeName, this.specialties).subscribe(
       () => {
         this.success = 'BDE créé !';
         this.sending = false;
