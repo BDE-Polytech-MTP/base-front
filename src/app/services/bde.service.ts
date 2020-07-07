@@ -14,9 +14,10 @@ export class BdeService {
 
   constructor(private http: HttpClient) { }
 
-  createBDE(name: string, specialties: { name: string, minYear: number, maxYear: number}[]) {
+  createBDE(name: string, ownerEmail: string, specialties: { name: string, minYear: number, maxYear: number}[]) {
     return this.http.post(CREATE_BDE_ENDPOINT, {
       name,
+      ownerEmail,
       specialties,
     });
   }
