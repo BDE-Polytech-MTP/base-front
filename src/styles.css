@@ -19,3 +19,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .app-form > button {
     margin-bottom: 1.34375em;
 }
+
+.app-form > div.error {
+    text-align: center;
+    color: red;
+}
+
+.app-form > div.success {
+    text-align: center;
+    color: green;
+}

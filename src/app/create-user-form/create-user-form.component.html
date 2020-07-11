@@ -25,12 +25,12 @@
         <input type="text" matInput [(ngModel)]="data.lastname" name="lastname">
     </mat-form-field>
 
-    <h2 mat-subheader *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</h2>
-
     <button 
-        mat-flat-button 
+        mat-flat-button
         color="primary" 
         (click)="createUser()"
         [disabled]="sending || data.bde.length === 0 || data.email.trim().length === 0"
     >{{ sending ? 'Envoie en cours ...' : 'Ajouter l\'utilisateur' }}</button>
+
+    <div *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</div>
 </form>

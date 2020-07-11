@@ -1,7 +1,10 @@
 <form [formGroup]="confirmForm" class="app-form" (ngSubmit)="finishRegitration()">
-    <h2>Finalisation de votre inscription</h2>
-    <h3 *ngIf="bde.name.length">BDE de {{bde.name}}</h3>
-    <h3 *ngIf="!bde.name">BDE</h3>
+
+    <div class="title-container">
+        <h2>Finalisation de votre inscription</h2>
+        <h3 *ngIf="bde.name.length">BDE de {{bde.name}}</h3>
+        <h3 *ngIf="!bde.name">BDE</h3>
+    </div>
 
     <mat-form-field appearance="fill" hideRequiredMarker="true">
         <mat-label>Email</mat-label>
@@ -46,9 +49,9 @@
         <input type="password" matInput required formControlName="passwordConfirm" name="passwordConfirm">
     </mat-form-field>
 
-    <h2 mat-subheader  *ngIf="error" class="error">{{ error }}</h2>
-    
     <button [disabled]="submitting || !confirmForm.valid" type="submit" mat-flat-button color="primary">
         {{submitting ? 'Envoie en cours ...' : 'Finaliser l\'inscription'}}
     </button>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
 </form>

@@ -1,19 +1,12 @@
-.register-form mat-form-field {
-    width: 100%;
-}
+.title-container {
 
-.register-form mat-list-item {
-
-    &:nth-child(1), &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7) {
-        margin-top: 1.5em;
+    & h2 {
+        margin-bottom: 0;
     }
 
-}
+    & h3 {
+        font-size: small;
+        color: grey;
+    }
 
-.register-form h2.mat-subheader {
-    padding-left: 0;
-}
-
-.error {
-    color: red;
 }

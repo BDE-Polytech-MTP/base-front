@@ -1,4 +1,4 @@
-<form class="app-form create-bde-form" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropListLockAxis="y">
+<form class="app-form create-bde-form">
     <h2>Création d'un BDE</h2>
 
     <mat-form-field appearance="fill" hideRequiredMarker="true">
@@ -19,23 +19,28 @@
 
     <h3>Spécialités :</h3>
 
-    <button mat-stroked-button (click)="openSpecialtyDialog()">Ajouter une spécialité</button>
-    
-    <div class="specialty-list-item" cdkDrag *ngFor="let spe of specialties">
-        <div cdkDragHandle>
-            {{spe.name}} ({{spe.minYear}}A à {{spe.maxYear}}A)
+    <div class="specialties-list" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropListLockAxis="y" [class.empty]="specialties.length === 0">
+        <div class="no-items-indicator" *ngIf="specialties.length === 0">
+            Aucune spécialité
         </div>
-        <button mat-icon-button color="warn" (click)="deleteSpecialty(spe.name)">
-            <mat-icon>delete</mat-icon>
-        </button>
+        <div class="specialty-list-item" cdkDrag *ngFor="let spe of specialties">
+            <div cdkDragHandle>
+                {{spe.name}} ({{spe.minYear}}A à {{spe.maxYear}}A)
+            </div>
+            <button mat-icon-button color="warn" (click)="deleteSpecialty(spe.name)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
     </div>
-
-    <h2 mat-subheader *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</h2>
+    
+    <button mat-stroked-button (click)="openSpecialtyDialog()">Ajouter une spécialité</button>
 
     <button 
         mat-flat-button 
         color="primary" 
         (click)="sendCreationRequest()" 
         [disabled]="specialties.length == 0 || email.invalid || bdeName.trim().length === 0 || sending"
-    >{{ sending ? 'Envoi en cours ...' : 'Créer le BDE' }}</button> 
+    >{{ sending ? 'Envoi en cours ...' : 'Créer le BDE' }}</button>
+
+    <div *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</div>
 </form>
