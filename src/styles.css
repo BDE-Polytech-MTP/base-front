@@ -20,12 +20,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-bottom: 1.34375em;
 }
 
+.app-form mat-form-field {
+    margin-bottom: 5px; /* Allow mat-hint to fit correctly between fields */
+}
+
+.app-form .error {
+    color: red;
+}
+
+.app-form .success {
+    color: green;
+}
+
 .app-form > div.error {
     text-align: center;
-    color: red;
 }
 
 .app-form > div.success {
     text-align: center;
-    color: green;
 }

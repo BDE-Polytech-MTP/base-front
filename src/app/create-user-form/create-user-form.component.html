@@ -1,35 +1,45 @@
-<form class="app-form">
+<form class="app-form" [formGroup]="createUserForm">
     <h2>Ajouter un utilisateur</h2>
 
     <mat-form-field appearance="fill" hideRequiredMarker="true">
         <mat-label>BDE</mat-label>
-        <mat-select required [(ngModel)]="data.bde" name="bde">
+        <mat-select required formControlName="bde" name="bde">
             <mat-option *ngFor="let bde of bdes" [value]="bde.uuid">
                 {{bde.name}}
                 </mat-option>
         </mat-select>
+        <mat-hint class="error" *ngIf="bde.invalid && (bde.dirty || bde.touched)">Requis.</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill" hideRequiredMarker="true">
         <mat-label>Email</mat-label>
-        <input type="email" matInput required [(ngModel)]="data.email" name="email">
+        <input type="email" matInput required formControlName="email" name="email">
+        <mat-hint class="error" *ngIf="email.invalid && (email.dirty || email.touched)">
+            {{ email.errors.required ? 'Requis.' : 'Email invalide.' }}
+        </mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Prénom <i>(optionnel)</i></mat-label>
-        <input type="text" matInput [(ngModel)]="data.firstname" name="firstname">
+        <input type="text" matInput maxlength="15" formControlName="firstname" name="firstname">
+        <mat-hint class="error" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+            Le prénom doit faire entre 2 et 15 caractères si spécifié.
+        </mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Nom de famille <i>(optionnel)</i></mat-label>
-        <input type="text" matInput [(ngModel)]="data.lastname" name="lastname">
+        <input type="text" matInput maxlength="15" formControlName="lastname" name="lastname">
+        <mat-hint class="error" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+            Le nom de famille doit faire entre 2 et 15 caractères si spécifié.
+        </mat-hint>
     </mat-form-field>
 
     <button 
         mat-flat-button
         color="primary" 
         (click)="createUser()"
-        [disabled]="sending || data.bde.length === 0 || data.email.trim().length === 0"
+        [disabled]="sending || createUserForm.invalid"
     >{{ sending ? 'Envoie en cours ...' : 'Ajouter l\'utilisateur' }}</button>
 
     <div *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</div>
