@@ -3,7 +3,6 @@ import { BdeService } from '../services/bde.service';
 import { UsersService } from '../services/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
-import { AppValidators } from '../validators/app-validators';
 
 function minLengthIfNotEmpty(minLength: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
