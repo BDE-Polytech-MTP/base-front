@@ -6,7 +6,7 @@ import { BdeService } from '../services/bde.service';
 import { BDE } from '../models';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Subscription, range } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 const passwordsMatch: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.root.get('password');
