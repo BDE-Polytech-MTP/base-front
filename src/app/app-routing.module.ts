@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'account/confirm', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'bde', component: CreateBdeFormComponent },
-  { path: 'account/create', component: CreateUserFormComponent },
+  { path: 'account/create', component: CreateUserFormComponent, canActivate: [ConnectedGuard] },
   { path: '', component: HomeComponent, canActivate: [ConnectedGuard] },
 ];
 

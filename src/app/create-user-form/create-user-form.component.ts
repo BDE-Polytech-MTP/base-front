@@ -62,9 +62,9 @@ export class CreateUserFormComponent implements OnInit {
 
     this.usersService.createUser(
       this.createUserForm.value.bde,
-      this.createUserForm.value.bde.email,
-      this.createUserForm.value.bde.firstname.trim(),
-      this.createUserForm.value.bde.lastnameµ.trim()
+      this.createUserForm.value.email,
+      this.createUserForm.value.firstname.trim(),
+      this.createUserForm.value.lastname.trim()
     ).subscribe(
       () => {
         this.success = 'Compté créé !';
@@ -73,6 +73,10 @@ export class CreateUserFormComponent implements OnInit {
       (error: HttpErrorResponse) => {
         if (error.status === 400) {
           this.error = 'L\'email indiqué est déjà utilisé.';
+        } else if (error.status === 401) { // Should not happen : connected guard will prevent disconnected user to access this form.
+          this.error = 'Vous devez être connecté pour effectuer cette action.';
+        } else if (error.status === 403) {
+          this.error = 'Vous n\'avez pas le permission d\'effectuer cette action.';
         } else {
           this.error = 'Impossible de créer l\'utilisateur. Contactez un administrateur ou ré-essayez plus tard.';
         }
