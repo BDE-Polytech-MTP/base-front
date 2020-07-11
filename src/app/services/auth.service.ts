@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL } from './constants';
+import { API_URL } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { pluck, tap } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = `${BASE_URL}/login`;
+const LOGIN_ENDPOINT = `${API_URL}/login`;
 
 @Injectable({
   providedIn: 'root'

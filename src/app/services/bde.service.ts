@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL } from './constants';
+import { API_URL } from '../../environments/environment';
 import { BDE } from '../models';
 
-const CREATE_BDE_ENDPOINT = `${BASE_URL}/bde`;
-const LIST_BDES_ENDPOINT = `${BASE_URL}/bde`;
-const GET_BDE_ENDPOINT = `${BASE_URL}/bde`;
+const CREATE_BDE_ENDPOINT = `${API_URL}/bde`;
+const LIST_BDES_ENDPOINT = `${API_URL}/bde`;
+const GET_BDE_ENDPOINT = `${API_URL}/bde`;
 
 @Injectable({
   providedIn: 'root'

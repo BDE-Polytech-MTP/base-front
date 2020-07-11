@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BASE_URL } from './constants';
+import { API_URL } from '../../environments/environment';
 import { UnregisteredUser } from '../models';
 
-const CREATE_USER_ENDPOINT = `${BASE_URL}/users/unregistered`;
-const GET_UNREGISTERED_USER_ENDPOINT = `${BASE_URL}/users/unregistered`;
-const CONFIRM_ACCOUNT_ENDPOINT = `${BASE_URL}/register`;
+const CREATE_USER_ENDPOINT = `${API_URL}/users/unregistered`;
+const GET_UNREGISTERED_USER_ENDPOINT = `${API_URL}/users/unregistered`;
+const CONFIRM_ACCOUNT_ENDPOINT = `${API_URL}/register`;
 
 @Injectable({
   providedIn: 'root'
