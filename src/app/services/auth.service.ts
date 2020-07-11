@@ -12,7 +12,7 @@ const LOGIN_ENDPOINT = `${API_URL}/login`;
 export class AuthService {
 
   public connectionState = new BehaviorSubject<ConnectionState>(ConnectionState.DISCONNECTED);
-  private token = new BehaviorSubject<string | undefined>(undefined);
+  public token = new BehaviorSubject<string | undefined>(undefined);
 
   constructor(private http: HttpClient) {
     const jwt = localStorage.getItem('jwt');

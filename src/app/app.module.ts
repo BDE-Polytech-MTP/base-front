@@ -32,6 +32,8 @@ import { MobileNavBarComponent } from './nav-bar/mobile-nav-bar/mobile-nav-bar.c
 import { DesktopNavBarComponent } from './nav-bar/desktop-nav-bar/desktop-nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { httpInterceptorProviders } from './interceptors';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +67,9 @@ import { FooterComponent } from './footer/footer.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
