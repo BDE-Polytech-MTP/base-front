@@ -4,14 +4,15 @@ import { mergeMap, tap } from 'rxjs/operators';
 import { UsersService } from '../services/users.service';
 import { BdeService } from '../services/bde.service';
 import { BDE } from '../models';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
-const passwordsMatch: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.root.get('password');
+const passwordsMatch: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  const password = group.get('password');
+  const passwordConfirm = group.get('passwordConfirm');
 
-  return password && control.value && password.value !== control.value ? { passMatch: false } : null;
+  return password && passwordConfirm && password.value !== passwordConfirm.value ? { passMatch: true } : null;
 };
 
 @Component({
@@ -28,8 +29,34 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     specialty: new FormControl('', [Validators.required]),
     year: new FormControl(undefined, [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    passwordConfirm: new FormControl('', [Validators.required, passwordsMatch]),
+    passwordConfirm: new FormControl('', [Validators.required]),
+  }, {
+    validators: passwordsMatch
   });
+
+  get firstname() {
+    return this.confirmForm.get('firstname');
+  }
+
+  get lastname() {
+    return this.confirmForm.get('lastname');
+  }
+
+  get specialty() {
+    return this.confirmForm.get('specialty');
+  }
+
+  get year() {
+    return this.confirmForm.get('year');
+  }
+
+  get password() {
+    return this.confirmForm.get('password');
+  }
+
+  get passwordConfirm() {
+    return this.confirmForm.get('passwordConfirm');
+  }
 
   userUUID: string;
   bde: BDE = {
