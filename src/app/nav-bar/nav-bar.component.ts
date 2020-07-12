@@ -15,14 +15,19 @@ export class NavBarComponent implements OnInit, OnDestroy {
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mediaQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addEventListener('change', this.mediaQueryListener);
+
+    /* Using addListener instead of addEventListener because Safari does no support it */
+    // tslint:disable-next-line: deprecation
+    this.mobileQuery.addListener(this.mediaQueryListener);
   }
 
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.addEventListener('change', this.mediaQueryListener);
+    /* Using removeListener instead of removeEventListener because Safari does no support it */
+    // tslint:disable-next-line: deprecation
+    this.mobileQuery.removeListener(this.mediaQueryListener);
   }
 
 }
