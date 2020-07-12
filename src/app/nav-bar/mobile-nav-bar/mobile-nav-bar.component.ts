@@ -39,7 +39,7 @@ export class MobileNavBarComponent implements OnInit, OnDestroy {
 
   disconnect(): void {
     this.authService.disconnect();
-    this.router.navigate(['login']);
+    this.router.navigateByUrl('/login');
   }
 
 }

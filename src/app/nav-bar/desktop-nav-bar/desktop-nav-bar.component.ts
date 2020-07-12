@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService, ConnectionState } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-desktop-nav-bar',
@@ -13,7 +14,7 @@ export class DesktopNavBarComponent implements OnInit, OnDestroy {
 
   private authSubscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.connectionState.subscribe(
@@ -39,6 +40,7 @@ export class DesktopNavBarComponent implements OnInit, OnDestroy {
 
   disconnect(): void {
     this.authService.disconnect();
+    this.router.navigateByUrl('/login');
   }
 
 }
