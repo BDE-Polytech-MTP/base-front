@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BdeService } from '../services/bde.service';
-import { UsersService } from '../services/users.service';
+import { BdeService } from '../../services/bde.service';
+import { UsersService } from '../../services/users.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 

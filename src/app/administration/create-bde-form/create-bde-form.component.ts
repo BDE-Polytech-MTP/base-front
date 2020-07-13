@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateSpecialtyModalComponent } from '../create-specialty-modal/create-specialty-modal.component';
-import { BdeService } from '../services/bde.service';
+import { BdeService } from '../../services/bde.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 

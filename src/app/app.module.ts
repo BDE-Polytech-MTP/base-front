@@ -24,9 +24,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { CreateBdeFormComponent } from './create-bde-form/create-bde-form.component';
-import { CreateSpecialtyModalComponent } from './create-specialty-modal/create-specialty-modal.component';
-import { CreateUserFormComponent } from './create-user-form/create-user-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MobileNavBarComponent } from './nav-bar/mobile-nav-bar/mobile-nav-bar.component';
 import { DesktopNavBarComponent } from './nav-bar/desktop-nav-bar/desktop-nav-bar.component';
@@ -40,9 +37,6 @@ import { httpInterceptorProviders } from './interceptors';
     RegisterFormComponent,
     NavBarComponent,
     LoginFormComponent,
-    CreateBdeFormComponent,
-    CreateSpecialtyModalComponent,
-    CreateUserFormComponent,
     HomeComponent,
     MobileNavBarComponent,
     DesktopNavBarComponent,

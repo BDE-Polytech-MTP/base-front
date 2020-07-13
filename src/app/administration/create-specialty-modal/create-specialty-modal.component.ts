@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CreateBdeFormComponent } from '../create-bde-form/create-bde-form.component';
 import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { AppValidators } from '../validators/app-validators';
+import { AppValidators } from '../../validators/app-validators';
 
 export interface DialogData {
   exclude: string[];
