@@ -1,27 +1,24 @@
 # BaseFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+This project provides a basic front-end application to interact with the [BDE back-end REST API](https://github.com/BDE-Polytech-MTP/generic-backend).
+This project can and certainly should be forked by each school to add their own content and customize application's style.
 
-## Development server
+## Application overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The project is an Angular application. You can check Angular documentation on [Angular's website](https://angular.io). You can also specificly take a look at [the PWA part](https://angular.io/guide/service-worker-intro) as the application is also meant to be used as a PWA.
 
-## Code scaffolding
+We currently have 2 Angular module that define components in our application :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* `app.module.ts` : This module contains all components required for a basic user
+* `administration/administration.module.ts` : This module contains all components that are only needed for users who can perform administration tasks
 
-## Build
+Both have their respective routing modules :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+* `app-routing.module.ts`
+* `administration/administration-routing.module.ts`
 
-## Running unit tests
+## Contributing
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To contribute to this project, just fork the project and clone the forked project. 
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Once cloned, run `npm install` command then make any modifications you want, commit and push. Then create a [pull request](https://github.com/BDE-Polytech-MTP/generic-backend/pulls) and I'll take a look and accept it if everything's good.
