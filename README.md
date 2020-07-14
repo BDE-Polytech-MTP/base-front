@@ -1,5 +1,7 @@
 # BaseFront
 
+![Build](https://github.com/BDE-Polytech-MTP/base-front/workflows/Build/badge.svg)
+
 This project provides a basic front-end application to interact with the [BDE back-end REST API](https://github.com/BDE-Polytech-MTP/generic-backend).
 This project can and certainly should be forked by each school to add their own content and customize application's style.
 
