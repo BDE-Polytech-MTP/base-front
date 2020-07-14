@@ -1,0 +1,20 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2.1.0
+
+    - run: npm ci
+    - run: npm run build
+    # TODO: Create tests and uncomment the live below
+    # - run: npm run test
