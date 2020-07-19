@@ -1,0 +1,6 @@
+<h1 *ngIf="!bde">BDE</h1>
+<h1 *ngIf="bde">BDE de {{bde.name}}</h1>
+
+<h2>Utilisateurs</h2>
+
+<a mat-stroked-button [disabled]="!canAddUser()" routerLink="/bde/users/add">Ajouter un utilisateur</a>

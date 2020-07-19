@@ -13,13 +13,34 @@ export class AuthService {
 
   public connectionState = new BehaviorSubject<ConnectionState>(ConnectionState.DISCONNECTED);
   public token = new BehaviorSubject<string | undefined>(undefined);
+  private claims?: JWTClaims;
 
   constructor(private http: HttpClient) {
+    this.token.subscribe((token) => {
+      try {
+        this.claims = JSON.parse(atob(token.split('.')[1]));
+      } catch (_) {
+        this.claims = undefined;
+      }
+    }, () => this.claims === undefined);
+
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       this.token.next(jwt);
       this.connectionState.next(ConnectionState.CONNECTED); // TODO: Check token expiration date
     }
+  }
+
+  get bdeUUID(): string {
+    return this.claims.bde_uuid;
+  }
+
+  is(state: ConnectionState): boolean {
+    return this.connectionState.value === state;
+  }
+
+  hasPermission(permission: string): boolean {
+    return this.claims && this.claims.permissions.includes(permission);
   }
 
   connect(email: string, password: string) {
@@ -58,4 +79,12 @@ export enum ConnectionState {
   DISCONNECTED,
   CONNECTING,
   CONNECTED,
+}
+
+interface JWTClaims {
+  uuid: string;
+  bde_uuid: string;
+  firstname: string;
+  lastname: string;
+  permissions: string[];
 }

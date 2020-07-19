@@ -19,6 +19,7 @@ import { CreateSpecialtyModalComponent } from './create-specialty-modal/create-s
 import { CreateUserFormComponent } from './create-user-form/create-user-form.component';
 
 import { AdministrationRoutingModule } from './administration-routing.module';
+import { BdeProfilComponent } from './bde-profil/bde-profil.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { AdministrationRoutingModule } from './administration-routing.module';
     CreateBdeFormComponent,
     CreateSpecialtyModalComponent,
     CreateUserFormComponent,
+    BdeProfilComponent,
   ],
   imports: [
     CommonModule,
