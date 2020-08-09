@@ -24,6 +24,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-bottom: 5px; /* Allow mat-hint to fit correctly between fields */
 }
 
+.app-form mat-checkbox {
+    margin-bottom: 15px;
+}
+
 .app-form .error {
     color: red;
 }

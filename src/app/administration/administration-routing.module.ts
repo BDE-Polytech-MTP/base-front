@@ -4,12 +4,16 @@ import { CreateBdeFormComponent } from './create-bde-form/create-bde-form.compon
 import { CreateUserFormComponent } from './create-user-form/create-user-form.component';
 import { ConnectedGuard } from '../guards/connected.guard';
 import { BdeProfilComponent } from './bde-profil/bde-profil.component';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { ManageEventComponent } from './manage-event/manage-event.component';
 
 
 const routes: Routes = [
   { path: 'create', component: CreateBdeFormComponent },
   { path: 'users/add', component: CreateUserFormComponent, canActivate: [ConnectedGuard] },
-  { path: 'profil', component: BdeProfilComponent, canActivate: [ConnectedGuard] }
+  { path: 'profil', component: BdeProfilComponent, canActivate: [ConnectedGuard] },
+  { path: 'events/new', component: CreateEventComponent, canActivate: [ConnectedGuard] },
+  { path: 'events/:event_id', component: ManageEventComponent, canActivate: [ConnectedGuard] }
 ];
 
 @NgModule({
