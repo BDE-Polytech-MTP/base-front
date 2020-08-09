@@ -49,5 +49,5 @@
         (click)="createEvent()"
     >{{ sending ? 'Envoie en cours ...' : 'Créer l\'événement' }}</button>
 
-    <div *ngIf="error || success" [class]="error ? 'error' : 'success'">{{ error || success}}</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
 </form>
