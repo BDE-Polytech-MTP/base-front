@@ -4,7 +4,7 @@
             <img src="assets/icons/icon-512x512.png" class="icon">
         </a>
         <a mat-button *ngIf="hasOneOf(['add_user', 'manage_bde', 'all', 'manage_permissions'])" routerLink="/bde/profil">Gérer le BDE</a>
-        <a mat-button *ngIf="hasOneOf(['all', 'manage_events'])" routerLink="/bde/events/new">Créer un événement</a>
+        <a mat-button *ngIf="isConnected()" routerLink="/events">Les événements</a>
         <div class="flex-space"></div>
         <a mat-button routerLink="/login" *ngIf="isDisconnected()">Se connecter</a>
         <button mat-button *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</button>

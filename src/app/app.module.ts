@@ -20,6 +20,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatCardModule } from '@angular/material/card';
 
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -30,6 +31,7 @@ import { DesktopNavBarComponent } from './nav-bar/desktop-nav-bar/desktop-nav-ba
 import { FooterComponent } from './footer/footer.component';
 
 import { httpInterceptorProviders } from './interceptors';
+import { EventsListComponent } from './events-list/events-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { httpInterceptorProviders } from './interceptors';
     HomeComponent,
     MobileNavBarComponent,
     DesktopNavBarComponent,
-    FooterComponent
+    FooterComponent,
+    EventsListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { httpInterceptorProviders } from './interceptors';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,

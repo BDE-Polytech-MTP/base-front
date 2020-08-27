@@ -6,6 +6,7 @@ import { Event } from '../models';
 
 const CREATE_EVENT_ENDPOINT = `${API_URL}/events`;
 const FETCH_EVENT_ENDPOINT = `${API_URL}/events`;
+const FETCH_ALL_EVENTS_ENDPOINT = `${API_URL}/events`;
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class EventsService {
 
   getEvent(uuid: string) {
     return this.http.get<Event>(`${FETCH_EVENT_ENDPOINT}/${uuid}`);
+  }
+
+  getEvents() {
+    return this.http.get<Event[]>(FETCH_ALL_EVENTS_ENDPOINT);
   }
 
 }

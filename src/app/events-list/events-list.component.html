@@ -1,0 +1,16 @@
+<h1>Liste des événements</h1>
+
+<a *ngIf="canCreateEvent()" mat-raised-button color="primary" routerLink="/bde/events/new">Créer un événement</a>
+
+<mat-card class="event-card" *ngFor="let event of events">
+    <mat-card-title>{{event.eventName}}</mat-card-title>
+    <mat-card-content>
+        <p *ngIf="event.eventDate">L'événement à lieu le {{ toHumanDate(event.eventDate) }}</p>
+        <p *ngIf="event.bookingStart">Ouverture des réservations : {{ toHumanDate(event.bookingStart) }}</p>
+        <p *ngIf="event.bookingEnd">Fermeture des réservations : {{ toHumanDate(event.bookingEnd) }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button [disabled]="!canBook(event)" color="primary">Réserver</button>
+        <a mat-stroked-button *ngIf="canManageEvent(event)" color="primary" [routerLink]="'/bde/events/' + event.eventUUID">Modifier</a>
+    </mat-card-actions>
+</mat-card>
