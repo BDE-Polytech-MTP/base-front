@@ -4,8 +4,8 @@
     <mat-form-field appearance="fill" hideRequiredMarker="true">
         <mat-label>BDE</mat-label>
         <mat-select required formControlName="bde" name="bde">
-            <mat-option *ngFor="let bde of bdes" [value]="bde.uuid">
-                {{bde.name}}
+            <mat-option *ngFor="let bde of bdes" [value]="bde.bdeUUID">
+                {{bde.bdeName}}
                 </mat-option>
         </mat-select>
         <mat-hint class="error" *ngIf="bde.invalid && (bde.dirty || bde.touched)">Requis.</mat-hint>

@@ -18,7 +18,7 @@ function minLengthIfNotEmpty(minLength: number): ValidatorFn {
 })
 export class CreateUserFormComponent implements OnInit {
 
-  bdes: { name: string, uuid: string }[] = [];
+  bdes: { bdeName: string, bdeUUID: string }[] = [];
 
   createUserForm = new FormGroup({
     bde: new FormControl('', [Validators.required]),

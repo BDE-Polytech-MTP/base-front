@@ -1,10 +1,10 @@
 export interface Event {
 
     /** Event unique identifier */
-    uuid: string;
+    eventUUID: string;
 
     /** Event display name */
-    name: string;
+    eventName: string;
 
     /** Date at which users can begin to book (optional) */
     bookingStart?: string;

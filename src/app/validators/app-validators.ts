@@ -1,4 +1,5 @@
 import { ValidatorFn, AbstractControl, ValidationErrors, FormGroup } from '@angular/forms';
+import { DateTime } from 'luxon';
 
 export class AppValidators {
 
@@ -33,6 +34,21 @@ export class AppValidators {
                 }
             });
             return validationFunc(values);
+        };
+    }
+
+    static datetime(format: string = 'dd/MM/yyyy hh:mm'): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+
+            if (control.value.length === 0) {
+                return null;
+            }
+
+            const value = DateTime.fromFormat(control.value, format, { locale: 'fr' });
+            if (value.isValid) {
+                return null;
+            }
+            return { datetime: true };
         };
     }
 

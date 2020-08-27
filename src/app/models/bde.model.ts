@@ -1,12 +1,12 @@
 export interface BDE {
 
     /** BDE unique identifier */
-    uuid: string;
+    bdeUUID: string;
 
     /** BDE name */
-    name: string;
+    bdeName: string;
 
     /** Available specialties for this BDE */
-    specialties: {name: string, minYear: number, maxYear: number}[];
+    specialties: {specialtyName: string, minYear: number, maxYear: number}[];
 
 }

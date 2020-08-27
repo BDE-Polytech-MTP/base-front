@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AppValidators } from '../../validators/app-validators';
 import { EventsService } from '../../services/events.service';
-import { Moment } from 'moment';
+import { DateTime } from 'luxon';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -12,14 +13,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CreateEventComponent implements OnInit {
 
+  static readonly DATE_FORMAT: string = 'dd/MM/yyyy hh:mm';
+
   error = '';
   sending = false;
 
   createEventForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(200)]),
-    bookingStart: new FormControl(''),
-    bookingEnd: new FormControl(''),
-    eventDate: new FormControl(''),
+    bookingStart: new FormControl('', [AppValidators.datetime(CreateEventComponent.DATE_FORMAT)]),
+    bookingEnd: new FormControl('', [AppValidators.datetime(CreateEventComponent.DATE_FORMAT)]),
+    eventDate: new FormControl('', [AppValidators.datetime(CreateEventComponent.DATE_FORMAT)]),
     isDraft: new FormControl(false, [Validators.required]),
   });
 
@@ -27,7 +30,19 @@ export class CreateEventComponent implements OnInit {
     return this.createEventForm.get('name');
   }
 
-  constructor(private eventsService: EventsService, private router: Router) { }
+  get bookingStart() {
+    return this.createEventForm.get('bookingStart');
+  }
+
+  get bookingEnd() {
+    return this.createEventForm.get('bookingEnd');
+  }
+
+  get eventDate() {
+    return this.createEventForm.get('eventDate');
+  }
+
+  constructor(private eventsService: EventsService, private router: Router) {}
 
   ngOnInit(): void {
   }
@@ -39,11 +54,11 @@ export class CreateEventComponent implements OnInit {
     this.eventsService.createEvent(
       name,
       isDraft,
-      bookingStart ? (bookingStart as Moment).toISOString() : undefined,
-      bookingEnd ? (bookingEnd as Moment).toISOString() : undefined,
-      eventDate ? (eventDate as Moment).toISOString() : undefined
+      bookingStart ? DateTime.fromFormat(bookingStart, CreateEventComponent.DATE_FORMAT, { locale: 'fr' }).toISO() : undefined,
+      bookingEnd ? DateTime.fromFormat(bookingEnd, CreateEventComponent.DATE_FORMAT, { locale: 'fr' }).toISO() : undefined,
+      eventDate ? DateTime.fromFormat(eventDate, CreateEventComponent.DATE_FORMAT, { locale: 'fr' }).toISO() : undefined
     ).subscribe(
-      (data) => this.router.navigate(['bde', 'events', data.uuid]),
+      (data) => this.router.navigate(['bde', 'events', data.eventUUID]),
       (err: HttpErrorResponse) => {
         this.sending = false;
         if (err.status === 400) {

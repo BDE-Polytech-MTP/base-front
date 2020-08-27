@@ -13,10 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { CreateBdeFormComponent } from './create-bde-form/create-bde-form.component';
 import { CreateSpecialtyModalComponent } from './create-specialty-modal/create-specialty-modal.component';
@@ -47,13 +44,11 @@ import { ManageEventComponent } from './manage-event/manage-event.component';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
-    MatDatepickerModule,
-    MatMomentDateModule,
     MatCheckboxModule,
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
     AdministrationRoutingModule
-  ]
+  ],
 })
 export class AdministrationModule { }

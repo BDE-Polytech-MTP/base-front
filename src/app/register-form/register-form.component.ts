@@ -60,9 +60,9 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
   userUUID: string;
   bde: BDE = {
-    name: '',
+    bdeName: '',
     specialties: [],
-    uuid: '',
+    bdeUUID: '',
   };
 
   years: number[] = [];
@@ -84,7 +84,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     const yearField = this.confirmForm.get('year');
     yearField.disable();
     this.speChangeSub = this.confirmForm.get('specialty').valueChanges.subscribe((value) => {
-      const currentSpe = this.bde.specialties.find(spe => spe.name === value);
+      const currentSpe = this.bde.specialties.find(spe => spe.specialtyName === value);
       if (currentSpe) {
         this.years = [... new Array(currentSpe.maxYear - currentSpe.minYear + 1).keys()].map(i => i + currentSpe.minYear);
         yearField.enable();
@@ -99,7 +99,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
         this.confirmForm.get('email').setValue(user.email);
         this.confirmForm.get('firstname').setValue(user.firstname);
         this.confirmForm.get('lastname').setValue(user.lastname);
-        this.userUUID = user.uuid;
+        this.userUUID = user.userUUID;
       }),
       mergeMap((user) => this.bdeService.getBDE(user.bdeUUID)),
       tap((bde) =>  this.bde = bde)

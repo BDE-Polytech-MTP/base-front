@@ -21,23 +21,26 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Date d'ouverture des réservations <i>(optionnelle)</i></mat-label>
-        <input type="text" matInput [matDatepicker]="bookingStartPicker" formControlName="bookingStart" name="bookingStart">
-        <mat-datepicker-toggle matSuffix [for]="bookingStartPicker"></mat-datepicker-toggle>
-        <mat-datepicker #bookingStartPicker></mat-datepicker>
+        <input type="datetime-local" matInput formControlName="bookingStart" name="bookingStart" placeholder="jj/mm/aaaa hh:mm">
+        <mat-hint class="error" *ngIf="bookingStart.invalid && (bookingStart.dirty || bookingStart.touched)">
+            Date invalide.
+        </mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Date de fermeture des réservations <i>(optionnelle)</i></mat-label>
-        <input type="text" matInput [matDatepicker]="bookingEndPicker" formControlName="bookingEnd" name="bookingEnd">
-        <mat-datepicker-toggle matSuffix [for]="bookingEndPicker"></mat-datepicker-toggle>
-        <mat-datepicker #bookingEndPicker></mat-datepicker>
+        <input type="datetime-local" matInput formControlName="bookingEnd" name="bookingEnd" placeholder="jj/mm/aaaa hh:mm">
+        <mat-hint class="error" *ngIf="bookingEnd.invalid && (bookingEnd.dirty || bookingEnd.touched)">
+            Date invalide.
+        </mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Date de l'événement <i>(optionnelle)</i></mat-label>
-        <input type="text" matInput [matDatepicker]="eventDatePicker" formControlName="eventDate" name="eventDate">
-        <mat-datepicker-toggle matSuffix [for]="eventDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #eventDatePicker></mat-datepicker>
+        <input type="datetime-local" matInput formControlName="eventDate" name="eventDate" placeholder="jj/mm/aaaa hh:mm">
+        <mat-hint class="error" *ngIf="eventDate.invalid && (eventDate.dirty || eventDate.touched)">
+            Date invalide.
+        </mat-hint>
     </mat-form-field>
 
     <mat-checkbox formControlName="isDraft" name="isDraft">Draft</mat-checkbox>
