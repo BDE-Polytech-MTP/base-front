@@ -17,6 +17,14 @@
         </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Token d'autorisation</mat-label>
+        <input type="text" matInput minlength="1" [(ngModel)]="token" name="token" #tokenField="ngModel">
+        <mat-error *ngIf="tokenField.invalid && (tokenField.dirty || tokenField.touched)">
+            Requis.
+        </mat-error>
+    </mat-form-field>
+
     <h3>Spécialités :</h3>
 
     <div class="specialties-list" cdkDropList (cdkDropListDropped)="drop($event)" cdkDropListLockAxis="y" [class.empty]="specialties.length === 0">

@@ -17,6 +17,7 @@ export class CreateBdeFormComponent implements OnInit {
   sending = false;
   bdeName = '';
   ownerEmail = '';
+  token = '';
   specialties: { name: string, minYear: number, maxYear: number }[] = [];
 
   constructor(public dialog: MatDialog, public bdeService: BdeService) { }
@@ -47,7 +48,7 @@ export class CreateBdeFormComponent implements OnInit {
   sendCreationRequest() {
     this.sending = true;
     this.error = this.success = undefined;
-    this.bdeService.createBDE(this.bdeName, this.ownerEmail, this.specialties).subscribe(
+    this.bdeService.createBDE(this.bdeName, this.ownerEmail, this.specialties, this.token.length ? this.token : undefined).subscribe(
       () => {
         this.success = 'BDE créé !';
         this.sending = false;
