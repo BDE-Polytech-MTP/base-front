@@ -7,6 +7,6 @@ export interface BDE {
     bdeName: string;
 
     /** Available specialties for this BDE */
-    specialties: {specialtyName: string, minYear: number, maxYear: number}[];
+    specialties: {name: string, minYear: number, maxYear: number}[];
 
 }

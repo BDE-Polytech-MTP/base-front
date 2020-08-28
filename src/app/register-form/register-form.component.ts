@@ -84,7 +84,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     const yearField = this.confirmForm.get('year');
     yearField.disable();
     this.speChangeSub = this.confirmForm.get('specialty').valueChanges.subscribe((value) => {
-      const currentSpe = this.bde.specialties.find(spe => spe.specialtyName === value);
+      const currentSpe = this.bde.specialties.find(spe => spe.name === value);
+      console.log(value);
       if (currentSpe) {
         this.years = [... new Array(currentSpe.maxYear - currentSpe.minYear + 1).keys()].map(i => i + currentSpe.minYear);
         yearField.enable();
