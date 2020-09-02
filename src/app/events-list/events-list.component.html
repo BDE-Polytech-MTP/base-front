@@ -10,7 +10,9 @@
         <p *ngIf="event.bookingEnd">Fermeture des réservations : {{ toHumanDate(event.bookingEnd) }}</p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button [disabled]="!canBook(event)" color="primary">Réserver</button>
+        <button mat-raised-button disabled="{{ event.notBookable | async }}" color="primary">Réserver</button>
         <a mat-stroked-button *ngIf="canManageEvent(event)" color="primary" [routerLink]="'/bde/events/' + event.eventUUID">Modifier</a>
     </mat-card-actions>
 </mat-card>
+
+<h2 *ngIf="events.length === 0" class="no-events-title">Pas d'événements</h2>
