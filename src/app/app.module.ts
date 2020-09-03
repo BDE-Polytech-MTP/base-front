@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { httpInterceptorProviders } from './interceptors';
 import { EventsListComponent } from './events-list/events-list.component';
+import { BookingDetailsComponent } from './booking-details/booking-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { EventsListComponent } from './events-list/events-list.component';
     MobileNavBarComponent,
     DesktopNavBarComponent,
     FooterComponent,
-    EventsListComponent
+    EventsListComponent,
+    BookingDetailsComponent
   ],
   imports: [
     BrowserModule,

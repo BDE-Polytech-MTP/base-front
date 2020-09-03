@@ -3,9 +3,10 @@ import { EventsService } from '../services/events.service';
 import { Event } from '../models';
 import { DateTime } from 'luxon';
 import { AuthService } from '../services/auth.service';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, combineLatest, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BookingService } from '../services/booking.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events-list',
@@ -14,22 +15,41 @@ import { BookingService } from '../services/booking.service';
 })
 export class EventsListComponent implements OnInit, OnDestroy {
 
-  events: (Event & { notBookable: Observable<boolean> })[] = [];
+  events: (Event & { notBookable: Observable<boolean>, booked: boolean })[] = [];
 
   private timeIntervalSub: number;
   private timerSubject: Subject<DateTime>;
 
-  constructor(private eventsService: EventsService, private authService: AuthService, private bookingService: BookingService) { }
+  constructor(
+    private eventsService: EventsService,
+    private authService: AuthService,
+    private bookingService: BookingService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.timerSubject = new Subject();
     this.timeIntervalSub = setInterval(() => {
       this.timerSubject.next(DateTime.local());
     });
-    this.eventsService.getEvents().subscribe((events) => this.events = events.map(event => ({
-      ... event,
-      notBookable: this.timerSubject.pipe(map(currentDate => !this.canBook(event, currentDate))),
-    })));
+
+    const eventsAndBookings = combineLatest(
+      [this.eventsService.getEvents(), this.bookingService.getBookingsForUser(this.authService.userUUID)]
+    );
+
+    eventsAndBookings.subscribe(
+      ([events, bookings]) => {
+        this.events = events.map(event => {
+          const booked = bookings.some(booking => booking.eventUUID === event.eventUUID);
+          const notBookable = booked ? of(false) : this.timerSubject.pipe(map(currentDate => !this.canBook(event, currentDate)));
+          return {
+            ... event,
+            notBookable,
+            booked,
+          };
+        });
+      }
+    );
   }
 
   ngOnDestroy(): void {
@@ -65,7 +85,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
 
   book(event: Event) {
     this.bookingService.createBooking(event.eventUUID, this.authService.userUUID).subscribe(
-      () => console.log('Created'),
+      () => this.router.navigate(['events', event.eventUUID, 'bookings', this.authService.userUUID]),
       () => console.error('Got an error')
     );
   }

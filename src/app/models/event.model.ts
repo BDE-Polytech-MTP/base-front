@@ -15,9 +15,6 @@ export interface Event {
     /** Date at which event take place (optional) (indicative) */
     eventDate?: string;
 
-    /** Event booking state */
-    eventState: number;
-
     /** UUID of the BDE which organize the event */
     bdeUUID: string;
 
