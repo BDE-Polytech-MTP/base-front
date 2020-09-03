@@ -35,6 +35,10 @@ export class AuthService {
     return this.claims.bde_uuid;
   }
 
+  get userUUID(): string {
+    return this.claims.uuid;
+  }
+
   is(state: ConnectionState): boolean {
     return this.connectionState.value === state;
   }

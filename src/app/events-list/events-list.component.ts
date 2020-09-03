@@ -5,6 +5,7 @@ import { DateTime } from 'luxon';
 import { AuthService } from '../services/auth.service';
 import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BookingService } from '../services/booking.service';
 
 @Component({
   selector: 'app-events-list',
@@ -18,7 +19,7 @@ export class EventsListComponent implements OnInit, OnDestroy {
   private timeIntervalSub: number;
   private timerSubject: Subject<DateTime>;
 
-  constructor(private eventsService: EventsService, private authService: AuthService) { }
+  constructor(private eventsService: EventsService, private authService: AuthService, private bookingService: BookingService) { }
 
   ngOnInit(): void {
     this.timerSubject = new Subject();
@@ -60,6 +61,13 @@ export class EventsListComponent implements OnInit, OnDestroy {
       return true;
     }
     return this.authService.hasPermission('manage_events') && event.bdeUUID === this.authService.bdeUUID;
+  }
+
+  book(event: Event) {
+    this.bookingService.createBooking(event.eventUUID, this.authService.userUUID).subscribe(
+      () => console.log('Created'),
+      () => console.error('Got an error')
+    );
   }
 
 }
