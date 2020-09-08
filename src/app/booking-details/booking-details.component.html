@@ -1,3 +1,5 @@
 <h1>Réservation</h1>
 
-Nom de l'événement : {{ booking.eventName }}
+<ng-container *ngIf="booking">
+    Nom de l'événement : {{ booking.eventName }}
+</ng-container>
