@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../environments/environment';
-import { UnregisteredUser } from '../models';
+import { UnregisteredUser, User } from '../models';
 
 const CREATE_USER_ENDPOINT = `${API_URL}/users/unregistered`;
 const GET_UNREGISTERED_USER_ENDPOINT = `${API_URL}/users/unregistered`;
 const CONFIRM_ACCOUNT_ENDPOINT = `${API_URL}/register`;
+const GET_USERS_FOR_BDE_ENDPOINT = (bdeUUID: string) => `${API_URL}/bde/${bdeUUID}/users`;
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class UsersService {
       year,
       password,
     });
+  }
+
+  findUsersForBDE(bdeUUID: string) {
+    return this.http.get<(User | UnregisteredUser)[]>(GET_USERS_FOR_BDE_ENDPOINT(bdeUUID));
   }
 
 }
