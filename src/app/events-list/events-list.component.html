@@ -11,7 +11,7 @@
     </mat-card-content>
     <mat-card-actions>
         <button *ngIf="!event.booked" mat-raised-button disabled="{{ event.notBookable | async }}" color="primary" (click)="book(event)">Réserver</button>
-        <button *ngIf="event.booked" mat-raised-button color="primary">Consulter ma réservation</button>
+        <button *ngIf="event.booked" mat-raised-button color="primary" [routerLink]="'/events/' + event.eventUUID + '/bookings/' + userUUID">Consulter ma réservation</button>
         <a mat-stroked-button *ngIf="canManageEvent(event)" color="primary" [routerLink]="'/bde/events/' + event.eventUUID">Modifier</a>
     </mat-card-actions>
 </mat-card>

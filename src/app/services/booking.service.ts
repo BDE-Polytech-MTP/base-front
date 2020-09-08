@@ -5,6 +5,7 @@ import { Booking } from '../models';
 
 const CREATE_BOOKING_ENDPOINT = (eventUUID: string, userUUID: string) => `${API_URL}/events/${eventUUID}/bookings/${userUUID}`;
 const GET_USER_BOOKINGS_ENDPOINT = (userUUID: string) => `${API_URL}/users/registered/${userUUID}/bookings`;
+const GET_BOOKING_ENDPOINT = CREATE_BOOKING_ENDPOINT;
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class BookingService {
 
   getBookingsForUser(userUUID: string) {
     return this.http.get<Booking[]>(GET_USER_BOOKINGS_ENDPOINT(userUUID));
+  }
+
+  getBooking(eventUUID: string, userUUID: string) {
+    return this.http.get<Booking>(GET_BOOKING_ENDPOINT(eventUUID, userUUID));
   }
 
 }

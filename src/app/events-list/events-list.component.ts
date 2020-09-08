@@ -56,6 +56,10 @@ export class EventsListComponent implements OnInit, OnDestroy {
     clearInterval(this.timeIntervalSub);
   }
 
+  get userUUID() {
+    return this.authService.userUUID;
+  }
+
   toHumanDate(date: string): string {
     return DateTime.fromISO(date).setLocale('fr').toLocaleString(DateTime.DATETIME_SHORT);
   }
