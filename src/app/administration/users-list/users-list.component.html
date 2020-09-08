@@ -32,6 +32,19 @@
         <td mat-cell *matCellDef="let user">{{ user.lastname }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="specialty">
+        <th mat-header-cell *matHeaderCellDef>Spécialité</th>
+        <td mat-cell *matCellDef="let user">{{ user.specialtyName + user.specialtyYear }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="member">
+        <th mat-header-cell *matHeaderCellDef>Adhérent</th>
+        <td mat-cell *matCellDef="let user">
+            <mat-icon style="color: green" *ngIf="user.member">check_circle</mat-icon>
+            <mat-icon style="color: red" *ngIf="!user.member">cancel</mat-icon>
+        </td>
+    </ng-container>
+
     <ng-container matColumnDef="permissions">
         <th mat-header-cell *matHeaderCellDef>Permissions</th>
         <td mat-cell *matCellDef="let user">{{ formatPermission(user.permissions) }}</td>
@@ -40,7 +53,14 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let user">
-            <a mat-raised-button routerLink="/" color="primary">Consulter le profil</a>
+            <a mat-raised-button routerLink="/" color="primary">
+                <ng-container *ngIf="!ipadLandQuery.matches">
+                    Consulter le profil
+                </ng-container>
+                <ng-container *ngIf="ipadLandQuery.matches">
+                    <mat-icon>person</mat-icon>
+                </ng-container>
+            </a>
         </td>
     </ng-container>
 
