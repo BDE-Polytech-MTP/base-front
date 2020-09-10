@@ -24,4 +24,8 @@ export class UserProfilComponent implements OnInit {
     );
   }
 
+  formatPermissions(permissions: string[]) {
+    return permissions.reduce((c, n) => c.toLowerCase() + ', ' + n.toLowerCase());
+  }
+
 }

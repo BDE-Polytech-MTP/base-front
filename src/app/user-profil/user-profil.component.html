@@ -13,5 +13,9 @@
             <em style="color: green" *ngIf="user.member">Oui</em>
             <em style="color: red" *ngIf="!user.member">Non</em>
         </ng-container>
+        <ng-container *ngIf="user.permissions">
+            <br>
+            Permissions: {{ user.permissions.length ? formatPermissions(user.permissions) : 'Aucune permission' }}
+        </ng-container>
     </mat-card-content>
 </mat-card>
