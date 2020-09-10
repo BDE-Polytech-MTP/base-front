@@ -1,5 +1,12 @@
 <h1>Réservation</h1>
 
-<ng-container *ngIf="booking">
-    Nom de l'événement : {{ booking.eventName }}
-</ng-container>
+<mat-card *ngIf="booking">
+    <mat-card-title>{{ booking.eventName }}</mat-card-title>
+    <mat-card-subtitle>{{ user.firstname }} {{ user.lastname }} {{ user.specialtyName }}{{ user.specialtyYear }}</mat-card-subtitle>
+    <mat-card-subtitle style="color: green">Événément réservé</mat-card-subtitle>
+    <mat-card-content>
+        <ng-container *ngIf="booking.eventDate">
+            Date de l'événement : {{ toHumanDate(booking.eventDate) }}
+        </ng-container>
+    </mat-card-content>
+</mat-card>

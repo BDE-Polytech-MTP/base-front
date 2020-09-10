@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../services/booking.service';
 import { mergeMap } from 'rxjs/operators';
-import { Booking, Event } from '../models';
-import { EventsService } from '../services/events.service';
+import { Booking, Event, User } from '../models';
 import { combineLatest } from 'rxjs';
+import { UsersService } from '../services/users.service';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-booking-details',
@@ -13,14 +14,14 @@ import { combineLatest } from 'rxjs';
 })
 export class BookingDetailsComponent implements OnInit {
 
-  booking: Booking;
-  event: Event;
+  booking: Booking & Event;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private bookingsService: BookingService,
-    private eventsService: EventsService
+    private usersService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -28,14 +29,22 @@ export class BookingDetailsComponent implements OnInit {
     .pipe(mergeMap((params) => {
       const eventUUID = params.get('event_id');
       const userUUID = params.get('user_id');
-      return combineLatest([this.bookingsService.getBooking(eventUUID, userUUID), this.eventsService.getEvent(eventUUID)]);
+      return combineLatest([
+        this.bookingsService.getBooking(eventUUID, userUUID),
+        // this.eventsService.getEvent(eventUUID), // TODO Uncomment later ?
+        this.usersService.findUserByUUID(userUUID)
+      ]);
     })).subscribe(
-      ([booking, event]) => {
+      ([booking, user]) => {
         this.booking = booking;
-        this.event = event;
+        this.user = user as User;
       },
       () => this.router.navigateByUrl('/')
     );
+  }
+
+  toHumanDate(date: string): string {
+    return DateTime.fromISO(date).setLocale('fr').toLocaleString(DateTime.DATETIME_SHORT);
   }
 
 }
