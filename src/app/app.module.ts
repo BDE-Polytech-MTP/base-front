@@ -33,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
 import { httpInterceptorProviders } from './interceptors';
 import { EventsListComponent } from './events-list/events-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
     DesktopNavBarComponent,
     FooterComponent,
     EventsListComponent,
-    BookingDetailsComponent
+    BookingDetailsComponent,
+    UserProfilComponent
   ],
   imports: [
     BrowserModule,

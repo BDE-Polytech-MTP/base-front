@@ -6,14 +6,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { ConnectedGuard } from './guards/connected.guard';
 import { EventsListComponent } from './events-list/events-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 
 const routes: Routes = [
   { path: 'account/confirm', component: RegisterFormComponent },
   { path: 'login', component: LoginFormComponent },
-  { path: 'events', component: EventsListComponent },
+  { path: 'events', component: EventsListComponent, canActivate: [ConnectedGuard]  },
   { path: 'bde', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) },
-  { path: 'events/:event_id/bookings/:user_id', component: BookingDetailsComponent },
+  { path: 'events/:event_id/bookings/:user_id', component: BookingDetailsComponent, canActivate: [ConnectedGuard]  },
+  { path: 'users/:uuid', component: UserProfilComponent, canActivate: [ConnectedGuard] },
   { path: '', component: HomeComponent, canActivate: [ConnectedGuard] },
 ];
 

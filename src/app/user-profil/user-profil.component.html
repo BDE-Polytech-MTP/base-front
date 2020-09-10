@@ -1,0 +1,17 @@
+<h1>Profil utilisateur</h1>
+
+<mat-card *ngIf="user">
+    <mat-card-title>{{ user.firstname }} {{ user.lastname }}</mat-card-title>
+    <mat-card-subtitle *ngIf="user.email"> {{ user.email }}</mat-card-subtitle>
+    <mat-card-content>
+        <ng-container *ngIf="user.specialtyYear && user.specialtyName">
+            Spécialité : {{ user.specialtyName }}{{ user.specialtyYear }}
+        </ng-container>
+        <ng-container *ngIf="user.member !== undefined">
+            <br>
+            Adhérent:
+            <em style="color: green" *ngIf="user.member">Oui</em>
+            <em style="color: red" *ngIf="!user.member">Non</em>
+        </ng-container>
+    </mat-card-content>
+</mat-card>

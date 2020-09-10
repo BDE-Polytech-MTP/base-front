@@ -21,6 +21,8 @@ export interface UnregisteredUser {
     /** User permissions */
     permissions: string[];
 
+    member?: boolean;
+
 }
 
 /**
@@ -51,5 +53,7 @@ export interface User {
 
     /** User permissions */
     permissions: string[];
+
+    member?: boolean;
 
 }

@@ -6,6 +6,7 @@
         <a mat-button *ngIf="hasOneOf(['add_user', 'manage_bde', 'all', 'manage_permissions'])" routerLink="/bde/profil">Gérer le BDE</a>
         <a mat-button *ngIf="isConnected()" routerLink="/events">Les événements</a>
         <div class="flex-space"></div>
+        <a mat-button [routerLink]="['/users', userUUID]" *ngIf="isConnected()">Mon profil</a>
         <a mat-button routerLink="/login" *ngIf="isDisconnected()">Se connecter</a>
         <button mat-button *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</button>
         <button mat-button *ngIf="isConnecting()" disabled>Connexion ...</button>

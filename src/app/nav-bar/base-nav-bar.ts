@@ -5,6 +5,10 @@ export class BaseNavBar {
 
     constructor(private authService: AuthService, private router: Router) { }
 
+    get userUUID() {
+      return this.authService.userUUID;
+    }
+
     isDisconnected(): boolean {
       return this.authService.is(ConnectionState.DISCONNECTED);
     }

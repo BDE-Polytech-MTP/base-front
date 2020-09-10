@@ -7,6 +7,7 @@ const CREATE_USER_ENDPOINT = `${API_URL}/users/unregistered`;
 const GET_UNREGISTERED_USER_ENDPOINT = `${API_URL}/users/unregistered`;
 const CONFIRM_ACCOUNT_ENDPOINT = `${API_URL}/register`;
 const GET_USERS_FOR_BDE_ENDPOINT = (bdeUUID: string) => `${API_URL}/bde/${bdeUUID}/users`;
+const GET_USER_ENDPOINT = (userUUID: string) => `${API_URL}/users/${userUUID}`;
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,10 @@ export class UsersService {
 
   findUsersForBDE(bdeUUID: string) {
     return this.http.get<(User | UnregisteredUser)[]>(GET_USERS_FOR_BDE_ENDPOINT(bdeUUID));
+  }
+
+  findUserByUUID(userUUID: string) {
+    return this.http.get<User | UnregisteredUser>(GET_USER_ENDPOINT(userUUID));
   }
 
 }
