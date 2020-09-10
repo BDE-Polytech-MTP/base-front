@@ -26,28 +26,7 @@ import { BdeProfilComponent } from './bde-profil/bde-profil.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { ManageEventComponent } from './manage-event/manage-event.component';
 import { UsersListComponent } from './users-list/users-list.component';
-
-class PaginatorIntlProvider extends MatPaginatorIntl {
-
-  firstPageLabel = 'Première page';
-  itemsPerPageLabel = 'Éléments par page';
-  lastPageLabel = 'Dernière page';
-  nextPageLabel = 'Prochaine page';
-  previousPageLabel = 'Page précédente';
-
-  getRangeLabel = (page: number, pageSize: number, length: number) => {
-    if (length === 0 || pageSize === 0) {
-      return `0 sur ${length}`;
-    }
-    length = Math.max(length, 0);
-    const startIndex = page * pageSize;
-    const endIndex = startIndex < length ?
-      Math.min(startIndex + pageSize, length) :
-      startIndex + pageSize;
-    return `${startIndex + 1} – ${endIndex} sur ${length}`;
-  }
-
-}
+import { PaginatorIntlProvider } from '../services/paginator-fr';
 
 @NgModule({
   declarations: [

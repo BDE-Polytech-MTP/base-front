@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../services/booking.service';
 import { mergeMap } from 'rxjs/operators';
 import { Booking, Event, User } from '../models';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Observable } from 'rxjs';
 import { UsersService } from '../services/users.service';
 import { DateTime } from 'luxon';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-booking-details',
@@ -13,6 +16,11 @@ import { DateTime } from 'luxon';
   styleUrls: ['./booking-details.component.scss']
 })
 export class BookingDetailsComponent implements OnInit {
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  dataSource = new MatTableDataSource<User>([]);
 
   booking: Booking & Event;
   user: User;
@@ -25,10 +33,18 @@ export class BookingDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
     this.route.paramMap
     .pipe(mergeMap((params) => {
       const eventUUID = params.get('event_id');
       const userUUID = params.get('user_id');
+
+      this.bookingsService.getBookingsForEvent(eventUUID).subscribe(
+        (users) => this.dataSource.data = users
+      );
+
       return combineLatest([
         this.bookingsService.getBooking(eventUUID, userUUID),
         // this.eventsService.getEvent(eventUUID), // TODO Uncomment later ?

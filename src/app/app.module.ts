@@ -21,6 +21,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -34,6 +37,7 @@ import { httpInterceptorProviders } from './interceptors';
 import { EventsListComponent } from './events-list/events-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { PaginatorIntlProvider } from './services/paginator-fr';
 
 @NgModule({
   declarations: [
@@ -65,12 +69,16 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     BrowserAnimationsModule
   ],
   providers: [
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    { provide: MatPaginatorIntl, useFactory: () => new PaginatorIntlProvider() }
   ],
   bootstrap: [AppComponent]
 })

@@ -10,3 +10,35 @@
         </ng-container>
     </mat-card-content>
 </mat-card>
+
+<h2>Liste des participants</h2>
+
+<form class="app-form">
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Recherche</mat-label>
+        <input type="text" matInput name="search" id="searchBar">
+    </mat-form-field>
+</form>
+
+<mat-paginator [pageSizeOptions]="[50, 100, 500]"></mat-paginator>
+
+<table mat-table matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
+        <td mat-cell *matCellDef="let user">{{ user.firstname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let user">{{ user.lastname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="specialty">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Spécialité</th>
+        <td mat-cell *matCellDef="let user">{{ user.specialtyName + user.specialtyYear }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['firstname', 'lastname', 'specialty']"></tr>
+    <tr mat-row *matRowDef="let user; columns: ['firstname', 'lastname', 'specialty']"></tr>
+</table>
