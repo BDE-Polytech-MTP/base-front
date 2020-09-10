@@ -16,7 +16,7 @@
 <form class="app-form">
     <mat-form-field appearance="fill" hideRequiredMarker="true">
         <mat-label>Recherche</mat-label>
-        <input type="text" matInput name="search" id="searchBar">
+        <input type="text" matInput name="search" (input)="onSearchChange($event.target.value)">
     </mat-form-field>
 </form>
 

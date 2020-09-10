@@ -63,4 +63,8 @@ export class BookingDetailsComponent implements OnInit {
     return DateTime.fromISO(date).setLocale('fr').toLocaleString(DateTime.DATETIME_SHORT);
   }
 
+  onSearchChange(newValue: string) {
+    this.dataSource.filter = newValue;
+  }
+
 }
