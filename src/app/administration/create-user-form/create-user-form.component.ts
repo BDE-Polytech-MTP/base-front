@@ -25,6 +25,7 @@ export class CreateUserFormComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     firstname: new FormControl('', [minLengthIfNotEmpty(2), Validators.maxLength(15)]),
     lastname: new FormControl('', [minLengthIfNotEmpty(2), Validators.maxLength(15)]),
+    member: new FormControl(false)
   });
 
   get bde() {
@@ -41,6 +42,10 @@ export class CreateUserFormComponent implements OnInit {
 
   get lastname() {
     return this.createUserForm.get('lastname');
+  }
+
+  get member() {
+    return this.createUserForm.get('member');
   }
 
   error?: string;
@@ -63,6 +68,7 @@ export class CreateUserFormComponent implements OnInit {
     this.usersService.createUser(
       this.createUserForm.value.bde,
       this.createUserForm.value.email,
+      this.createUserForm.value.member,
       this.createUserForm.value.firstname.trim(),
       this.createUserForm.value.lastname.trim()
     ).subscribe(

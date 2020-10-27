@@ -16,12 +16,13 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  createUser(bdeUUID: string, userEmail: string, firstname?: string, lastname?: string) {
+  createUser(bdeUUID: string, userEmail: string, member: boolean, firstname?: string, lastname?: string) {
     return this.http.post(CREATE_USER_ENDPOINT, {
       bde: bdeUUID,
       email: userEmail,
       firstname: firstname && firstname.trim().length ? firstname : undefined,
       lastname: lastname && lastname.trim().length ? lastname : undefined,
+      member,
     });
   }
 
