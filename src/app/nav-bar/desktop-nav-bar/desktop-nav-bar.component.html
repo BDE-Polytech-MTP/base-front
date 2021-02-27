@@ -3,6 +3,7 @@
         <a routerLink="/">
             <img src="assets/icons/icon-512x512.png" class="icon">
         </a>
+        <a mat-button routerLink="/partners">Partenariats</a>
         <a mat-button *ngIf="hasOneOf(['add_user', 'manage_bde', 'all', 'manage_permissions'])" routerLink="/bde/profil">Gérer le BDE</a>
         <a mat-button *ngIf="isConnected()" routerLink="/events">Les événements</a>
         <div class="flex-space"></div>

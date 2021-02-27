@@ -1,0 +1,26 @@
+.dominos-logo {
+    background-size: cover;
+    background-image: url('/assets/img/domino-logo.png');
+}
+
+.bockale-logo {
+    background-size: cover;
+    background-image: url('/assets/img/bockale-logo.jpg');
+}
+
+.partners {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.partner-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 500px) {
+    .partners {
+        flex-direction: column;
+    }
+}

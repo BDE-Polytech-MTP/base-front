@@ -7,6 +7,7 @@ import { ConnectedGuard } from './guards/connected.guard';
 import { EventsListComponent } from './events-list/events-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { PartnersComponent } from './partners/partners.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'bde', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) },
   { path: 'events/:event_id/bookings/:user_id', component: BookingDetailsComponent, canActivate: [ConnectedGuard]  },
   { path: 'users/:uuid', component: UserProfilComponent, canActivate: [ConnectedGuard] },
+  { path: 'partners', component: PartnersComponent},
   { path: '', component: HomeComponent, canActivate: [ConnectedGuard] },
 ];
 

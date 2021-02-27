@@ -15,6 +15,9 @@
                     <a *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</a>
                 </mat-list-item>
                 <mat-list-item>
+                    <a mat-button routerLink="/partners">Partenariats</a>
+                </mat-list-item>
+                <mat-list-item>
                     <a [routerLink]="['/users', userUUID]" *ngIf="isConnected()">Mon profil</a>
                 </mat-list-item>
                 <mat-list-item *ngIf="hasOneOf(['add_user', 'manage_bde', 'all', 'manage_permissions'])">
