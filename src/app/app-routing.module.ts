@@ -8,10 +8,12 @@ import { EventsListComponent } from './events-list/events-list.component';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { PartnersComponent } from './partners/partners.component';
+import { AccountRequestFormComponent } from './account-request/account-request.component';
 
 
 const routes: Routes = [
   { path: 'account/confirm', component: RegisterFormComponent },
+  { path: 'register', component: AccountRequestFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'events', component: EventsListComponent, canActivate: [ConnectedGuard]  },
   { path: 'bde', loadChildren: () => import('./administration/administration.module').then(m => m.AdministrationModule) },

@@ -1,0 +1,81 @@
+<form *ngIf="!success" [formGroup]="confirmForm" class="app-form" (ngSubmit)="askAccount()">
+
+    <div class="title-container">
+        <h2>Demande de création de compte</h2>
+    </div>
+
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput required formControlName="email" name="email">
+        <mat-hint class="error" *ngIf="email.invalid && (email.dirty || email.touched)">
+            {{ firstname.errors.required ? 'Requis.' : 'Ceci n\'est pas un mail valide' }}
+        </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Prénom</mat-label>
+        <input matInput required formControlName="firstname" name="firstname" minlength="2" maxlength="15">
+        <mat-hint class="error" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+            {{ firstname.errors.required ? 'Requis.' : 'Le prénom doit faire entre 2 et 15 caractères.' }}
+        </mat-hint>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Nom de famille</mat-label>
+        <input matInput required formControlName="lastname" name="lastname" minlength="2" maxlength="15">
+        <mat-hint class="error" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+            {{ lastname.errors.required ? 'Requis.' : 'Le nom de famille doit faire entre 2 et 15 caractères.' }}
+        </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>BDE</mat-label>
+        <mat-select required formControlName="bde">
+            <mat-option *ngFor="let bde of bdes" [value]="bde.bdeUUID">
+                {{bde.bdeName}}
+                </mat-option>
+        </mat-select>
+        <mat-hint class="error" *ngIf="bde.invalid && (bde.dirty || bde.touched)">
+            Requis.
+        </mat-hint>
+    </mat-form-field>
+    
+
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Spécialité</mat-label>
+        <mat-select required formControlName="specialty">
+            <mat-option *ngFor="let specialty of specialties.sort()" [value]="specialty.name">
+                {{specialty.name}}
+                </mat-option>
+        </mat-select>
+        <mat-hint class="error" *ngIf="specialty.invalid && (specialty.dirty || specialty.touched)">
+            Requis.
+        </mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" hideRequiredMarker="true">
+        <mat-label>Année</mat-label>
+        <mat-select required formControlName="year">
+            <mat-option *ngFor="let year of years" [value]="year">
+                {{year}}
+            </mat-option>
+        </mat-select>
+        <mat-hint class="error" *ngIf="year.invalid && (year.dirty || year.touched)">
+            Requis.
+        </mat-hint>
+    </mat-form-field>
+
+    <button [disabled]="submitting || !confirmForm.valid" type="submit" mat-flat-button color="primary">
+        {{submitting ? 'Envoie en cours ...' : 'Demander un compte'}}
+    </button>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+</form>
+<div *ngIf="success" class="success-display">
+    <h2>Votre demande de compte a bien été effectuée</h2>
+    <p>
+        Vous devez maintenant attendre qu'un administrateur la valide.
+        Vérifiez vos emails régulièrement.
+    </p>
+    <a routerLink="/" mat-raised-button color="primary">Retour à l'accueil</a>
+</div>

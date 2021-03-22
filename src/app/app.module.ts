@@ -39,6 +39,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { PaginatorIntlProvider } from './services/paginator-fr';
 import { PartnersComponent } from './partners/partners.component';
+import { AccountRequestFormComponent } from './account-request/account-request.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PartnersComponent } from './partners/partners.component';
     EventsListComponent,
     BookingDetailsComponent,
     UserProfilComponent,
-    PartnersComponent
+    PartnersComponent,
+    AccountRequestFormComponent,
   ],
   imports: [
     BrowserModule,
