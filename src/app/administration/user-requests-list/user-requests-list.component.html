@@ -31,8 +31,8 @@
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
         <td mat-cell *matCellDef="let row">
-            <button mat-raised-button color="primary">Accepter</button>&nbsp;
-            <button mat-raised-button color="warn">Refuser</button>
+            <button mat-raised-button color="primary" (click)="accept(row)">Accepter</button>&nbsp;
+            <button mat-raised-button color="warn" (click)="refuse(row)">Refuser</button>
         </td>
     </ng-container>
 

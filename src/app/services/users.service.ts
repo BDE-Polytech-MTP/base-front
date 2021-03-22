@@ -11,6 +11,7 @@ const GET_USERS_FOR_BDE_ENDPOINT = (bdeUUID: string) =>
 const GET_USER_ENDPOINT = (userUUID: string) => `${API_URL}/users/${userUUID}`;
 const REQUEST_ACCOUNT_ENDPOINT = `${API_URL}/users/requests`;
 const GET_ACCOUNT_REQUESTS_ENDPOINT = (bdeUUID: string) => `${API_URL}/users/requests/${bdeUUID}`;
+const PROCESS_ACCOUNT_REQUESTS_ENDPOINT = (bdeUUID: string) => `${API_URL}/users/requests/${bdeUUID}`;
 
 @Injectable({
   providedIn: 'root',
@@ -87,5 +88,12 @@ export class UsersService {
       specialtyName: string;
       specialtyYear: number;
     }[]>(GET_ACCOUNT_REQUESTS_ENDPOINT(bdeUUID));
+  }
+
+  processAccountRequest(email: string, bdeUUID: string, accepted: boolean) {
+    return this.http.post(PROCESS_ACCOUNT_REQUESTS_ENDPOINT(bdeUUID), {
+      accepted,
+      email,
+    });
   }
 }
