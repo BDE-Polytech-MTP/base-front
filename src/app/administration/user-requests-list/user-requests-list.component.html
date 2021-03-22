@@ -1,0 +1,47 @@
+<p>
+    <strong>Régles:</strong><br>
+    On n'accepte une demande si :<br>
+</p>
+<ul>
+    <li>Le nom et le prénom sont corrects</li>
+    <li>On a vérifié si la personne n'a pas déjà un compte (on veut éviter qu'une personne ai plusieurs comptes)</li>
+</ul>
+<table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
+        <td mat-cell *matCellDef="let row">{{ row.lastname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
+        <td mat-cell *matCellDef="let row">{{ row.firstname }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="specialty">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Spécialité</th>
+        <td mat-cell *matCellDef="let row">{{ row.specialtyName }}{{ row.specialtyYear }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+        <td mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary">Accepter</button>&nbsp;
+            <button mat-raised-button color="warn">Refuser</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="3">Rien à afficher</td>
+    </tr>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</table>

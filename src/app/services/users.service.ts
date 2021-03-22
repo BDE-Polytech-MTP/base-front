@@ -10,6 +10,7 @@ const GET_USERS_FOR_BDE_ENDPOINT = (bdeUUID: string) =>
   `${API_URL}/bde/${bdeUUID}/users`;
 const GET_USER_ENDPOINT = (userUUID: string) => `${API_URL}/users/${userUUID}`;
 const REQUEST_ACCOUNT_ENDPOINT = `${API_URL}/users/requests`;
+const GET_ACCOUNT_REQUESTS_ENDPOINT = (bdeUUID: string) => `${API_URL}/users/requests/${bdeUUID}`;
 
 @Injectable({
   providedIn: 'root',
@@ -76,5 +77,15 @@ export class UsersService {
     year: number;
   }) {
     return this.http.post(REQUEST_ACCOUNT_ENDPOINT, params);
+  }
+
+  findAllAccountRequestsForBde(bdeUUID: string) {
+    return this.http.get<{
+      firstname: string;
+      lastname: string;
+      email: string;
+      specialtyName: string;
+      specialtyYear: number;
+    }[]>(GET_ACCOUNT_REQUESTS_ENDPOINT(bdeUUID));
   }
 }

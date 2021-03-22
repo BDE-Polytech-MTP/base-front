@@ -27,6 +27,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { ManageEventComponent } from './manage-event/manage-event.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { PaginatorIntlProvider } from '../services/paginator-fr';
+import { UserRequestsListComponent } from './user-requests-list/user-requests-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PaginatorIntlProvider } from '../services/paginator-fr';
     CreateEventComponent,
     ManageEventComponent,
     UsersListComponent,
+    UserRequestsListComponent,
   ],
   imports: [
     CommonModule,
