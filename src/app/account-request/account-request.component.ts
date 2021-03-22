@@ -94,11 +94,11 @@ export class AccountRequestFormComponent implements OnInit, OnDestroy {
         tap((value) => {
           const selected = this.specialties.filter((spe) => spe.name === value);
           if (selected.length) {
+            const newYears = [];
             for (let i = selected[0].minYear; i <= selected[0].maxYear; i++) {
-              if (!this.years.includes(i)) {
-                this.years.push(i);
-              }
+                newYears.push(i);
             }
+            this.years = newYears;
             this.year.enable();
           } else {
             this.years = [];
