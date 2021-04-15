@@ -15,6 +15,9 @@
                     <a *ngIf="isConnected()" (click)="disconnect()">Se déconnecter</a>
                 </mat-list-item>
                 <mat-list-item>
+                    <a routerLink="/vote" *ngIf="isConnected()">Voter pour une liste</a>
+                </mat-list-item>
+                <mat-list-item>
                     <a routerLink="/partners">Partenariats</a>
                 </mat-list-item>
                 <mat-list-item>

@@ -9,6 +9,7 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { PartnersComponent } from './partners/partners.component';
 import { AccountRequestFormComponent } from './account-request/account-request.component';
+import { VoteComponent } from './vote/vote.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'events/:event_id/bookings/:user_id', component: BookingDetailsComponent, canActivate: [ConnectedGuard]  },
   { path: 'users/:uuid', component: UserProfilComponent, canActivate: [ConnectedGuard] },
   { path: 'partners', component: PartnersComponent},
+  { path: 'vote', component: VoteComponent, canActivate: [ConnectedGuard] },
   { path: '', component: HomeComponent, canActivate: [ConnectedGuard] },
 ];
 

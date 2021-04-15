@@ -40,6 +40,8 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
 import { PaginatorIntlProvider } from './services/paginator-fr';
 import { PartnersComponent } from './partners/partners.component';
 import { AccountRequestFormComponent } from './account-request/account-request.component';
+import { VoteComponent } from './vote/vote.component';
+import { Call2actionComponent } from './call2action/call2action.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { AccountRequestFormComponent } from './account-request/account-request.c
     UserProfilComponent,
     PartnersComponent,
     AccountRequestFormComponent,
+    VoteComponent,
+    Call2actionComponent,
   ],
   imports: [
     BrowserModule,

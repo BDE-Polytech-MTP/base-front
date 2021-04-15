@@ -1,0 +1,49 @@
+.votes {
+    display: flex;
+    flex-direction: row;
+}
+
+.votes img {
+    cursor: pointer;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.mask {
+    filter: grayscale(1);
+    transition: filter 1s, transform 0.5s;
+}
+
+.mask:hover, .voted {
+    filter: grayscale(0);
+    transform: scale(1.05);
+    z-index: 5;
+}
+
+.voted {
+    z-index: 4;
+}
+
+.title-container {
+
+    & h1 {
+        margin-bottom: 0;
+    }
+
+    & h2 {
+        font-size: small;
+        color: grey;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .votes {
+        flex-direction: column;
+    }
+    .half-width {
+        width: 100%;
+    }
+}

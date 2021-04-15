@@ -6,6 +6,7 @@
         <a mat-button routerLink="/partners">Partenariats</a>
         <a mat-button *ngIf="hasOneOf(['add_user', 'manage_bde', 'all', 'manage_permissions'])" routerLink="/bde/profil">Gérer le BDE</a>
         <a mat-button *ngIf="isConnected()" routerLink="/events">Les événements</a>
+        <a mat-button *ngIf="isConnected()" routerLink="/vote">Voter pour une liste</a>
         <div class="flex-space"></div>
         <a mat-button [routerLink]="['/users', userUUID]" *ngIf="isConnected()">Mon profil</a>
         <a mat-button routerLink="/login" *ngIf="isDisconnected()">Se connecter</a>
