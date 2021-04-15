@@ -17,6 +17,17 @@ export class VoteComponent implements OnInit {
       .subscribe((result) => (this.voted = result.vote));
   }
 
+  get votedFormatted() {
+    switch (this.voted) {
+      case 'allintech':
+        return 'All-intech';
+      case 'toutankhatech':
+        return 'Toutank(h)atech';
+      default:
+        return '';
+    }
+  }
+
   vote(name: string) {
     const previous = this.voted;
 

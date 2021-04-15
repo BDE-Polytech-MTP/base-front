@@ -1,6 +1,9 @@
 <div class="title-container">
     <h1 class="title">Voter pour le BDE 2021/2022</h1>
-    <h2 class="subtitle">Cliquez sur votre liste préférée</h2>
+    <h2 class="subtitle" *ngIf="voted === null">Cliquez sur votre liste préférée</h2>
+    <h2 class="subtitle" *ngIf="voted !== null">
+        Vous avez voté pour {{ votedFormatted }}
+    </h2>
 </div>
 <div class="votes">
     <img (click)="vote('allintech')" [class.voted]="voted === 'allintech'" class="half-width mask" src="/assets/img/allintech-groupe.jpg" />

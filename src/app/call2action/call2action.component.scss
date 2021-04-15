@@ -1,5 +1,5 @@
 .hero {
-    background-color: #25df78;
+    background-color: #ec9d36;
     text-align: center;
     font-size: 2em;
     padding: 40px;
@@ -8,6 +8,28 @@
     color: white;
     transition: background-color 0.5s;
     line-height: normal;
+    display: flex;
+    justify-content: space-between;
+
+    p {
+        vertical-align: middle;
+    }
+
+    img {
+        height: 80px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 20px;
+    }
+
+    @media (max-width: 900px) {
+
+        justify-content: center;
+
+        img {
+            display: none;
+        }
+    }
 }
 
 .hero-link:visited {
@@ -19,5 +41,5 @@
 }
 
 .hero:hover {
-    background-color: #16c565;
+    background-color: #e09129;
 }
