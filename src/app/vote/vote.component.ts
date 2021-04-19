@@ -20,9 +20,11 @@ export class VoteComponent implements OnInit {
   get votedFormatted() {
     switch (this.voted) {
       case 'allintech':
-        return 'All-intech';
+        return 'pour All-intech';
       case 'toutankhatech':
-        return 'Toutank(h)atech';
+        return 'pour Toutank(h)atech';
+      case 'blanc':
+        return 'blanc'
       default:
         return '';
     }
